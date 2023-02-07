@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do </title>
+    <link rel="icon" href="./assets/to-do-list.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="imgUp" id="imgUp"></div>
+    <main>
+        <header>
+            <h1>TODO</h1>
+            <div class="SwitchTheme" id="SwitchTheme"></div>
+        </header>
+        <div class="new_todo">
+            <div class="check_todo" onclick="New_To_Do()"></div>
+            <input type="text" id="todo">
+        </div>
+        <div class="seccion_todo" >
+            <div id="seccion_todo">
+                <div class="designEmpty">
+                    <div class="previewCheck">
+                        <img src="./assets/icon-check.svg" alt="chek">
+                    </div>
+                    <span class="previewTxt anclado">
+                        Organiza tu día, controla tu vida.
+                    </span>
+                </div>
+            </div>
+            <div class="options_todo">
+                <span class="num_todo_left">0 items left</span>
+                <div>
+
+                    <span class="show_all">All</span>
+                    <span class="show_Active">Active</span>
+                    <span class="show_Completed">Completed</span>
+
+                </div>
+                <span class="clerar_completes">Clear Completed</span>
+            </div>
+        </div>
+        <span>Drag and drop to recorder list</span>
+    </main>
+    <script src="./main.js"></script>
+</body>
+
+</html>
