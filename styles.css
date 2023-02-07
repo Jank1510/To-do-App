@@ -93,7 +93,7 @@ header h1 {
     overflow-y: scroll;
 }
 
-.designEmpty {
+.design_ToDO {
     height: 4vw;
     box-shadow: 0px 0.05vw 0px 0px hsl(235, 19%, 35%);
     display: flex;
@@ -101,26 +101,35 @@ header h1 {
     align-items: center;
 }
 
-.previewCheck {
+.imgcheck {
     width: 1.5vw;
     height: 1.5vw;
     border-radius: 2vw;
     margin: 0 5%;
     display: flex;
-    justify-content: center;
+    justify-content: center; transition: border 0.5s;
     align-items: center;
     background: linear-gradient(127deg, #57ddff, #c058f3);
 }
+.imgNoCheck{
+    width: 1.5vw;
+height: 1.5vw;
+border-radius: 2vw;
+margin: 0 5%;
+background: #06060600;
+border: 0.1vw solid hsl(235, 19%, 35%);
+cursor: pointer; transition: border 0.5s;
+}
+.imgNoCheck:hover{
+border: 0.1vw solid  #8c9afd;
 
-.previewCheck img {
+}
+.imgNoCheck img{
+    display: none;
+}
+.imgcheck img {
     width: 60%;
-}
-.imgCheck{
-    background-size: 100% 100%;
-width: 45%;
-height: 45%;
-background-repeat: no-repeat;
-}
+} 
 
 .previewTxt {
     width: 80%;
@@ -131,7 +140,7 @@ background-repeat: no-repeat;
     color: hsl(236, 33%, 92%);
 }
 
-.anclado {
+.finish {
     text-decoration: line-through;
     color: hsl(235, 19%, 35%);
 
