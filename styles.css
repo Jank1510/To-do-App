@@ -9,7 +9,7 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 100vw;
-    height: 35%;
+    height: 38%;
     position: absolute;
     z-index: -1;
     top: 0;
@@ -80,8 +80,7 @@ header h1 {
 
 }
 
-.seccion_todo {
-    height: 70%;
+.seccion_todo { 
     background-color: #25273c;
     border-radius: 0.5vw;
     margin-top: 5%;
@@ -151,7 +150,7 @@ border: 0.1vw solid  #8c9afd;
     justify-content: space-around;
     color: hsl(235, 19%, 35%);
     font-size: 1vw;
-    margin-top: 3%;
+    padding: 3% 0;
 }
 
 .options_todo div {
