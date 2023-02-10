@@ -8,12 +8,20 @@
     <title>To-Do </title>
     <link rel="icon" href="./assets/to-do-list.png">
     <link rel="stylesheet" href="styles.css">
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet"> 
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="imgUp" id="imgUp"></div>
     <main>
-        <header>
+        <header >
             <h1>TODO</h1>
             <div class="SwitchTheme" id="SwitchTheme"></div>
         </header>
@@ -33,17 +41,18 @@
                 </div>
                 <div id="new_toDOs"></div>
             </div>
-            <div class="options_todo">
-                <span class="num_todo_left" id="To_do_Finisheds">0 items left</span>
-                <div>
+            
+        </div>
+        <div class="options_todo">
+            <span class="num_todo_left" id="To_do_Finisheds">0 items left</span>
+            <div>
 
-                    <span class="show_all">All</span>
-                    <span class="show_Active">Active</span>
-                    <span class="show_Completed">Completed</span>
+                <span class="show_all">All</span>
+                <span class="show_Active">Active</span>
+                <span class="show_Completed">Completed</span>
 
-                </div>
-                <span class="clerar_completes">Clear Completed</span>
             </div>
+            <span class="clerar_completes">Clear Completed</span>
         </div>
         <span>Drag and drop to recorder list</span>
     </main>
