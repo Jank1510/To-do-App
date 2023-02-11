@@ -102,16 +102,28 @@ header h1 {
     overflow-y: scroll;
 }
 
-.design_ToDO {
-    height: 4vw;
-    box-shadow: 0px 0.085vw 0px 0px hsl(235, 19%, 35%);
+.design_ToDO {height: 4vw;
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
+    z-index: 1;
+    background: #25273c;
+    border-bottom: 1px solid hsl(235, 19%, 35%);
 }
-
-.design_ToDO img {
-    display: none;
+@keyframes deleteTodoAnimation {
+    from{
+        margin-top: 0%;
+    }to{
+        margin-top: -10.7%;
+    }
+}
+.design_ToDO_Delete{
+    position: relative;
+z-index: 0;animation-name: deleteTodoAnimation;
+animation-duration: 1s;
+}
+.design_ToDO img { 
     cursor: pointer;
 }
 
@@ -183,14 +195,14 @@ header h1 {
     column-gap: 1vw;
 }
 
-.options_todo span:hover {
+.hover:hover {
     color: hsl(236, 33%, 92%);
     cursor: pointer;
 }
 
 @keyframes focus {
     from {
-        color: #342aaf;
+        color: #8a80ff;
     }
 
     to {
@@ -205,23 +217,37 @@ header h1 {
     outline: none;
 }
 
+@keyframes deleteToDo {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+
+    }
+}
+
 .Delete_To_Do {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    background: #00000078;
+    background: #0000008a;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     display: none;
+    animation-name: deleteToDo;
+    animation-duration: 0.5s; 
+    z-index: 2;
 }
 
 .Delete_To_Do .sectionDelete {
     width: 30%;
     height: 25%;
-    background: #301553;
+    background: #25273c;
     border-radius: 1vw;
     display: flex;
     flex-direction: column;
@@ -236,7 +262,10 @@ header h1 {
 
 .Delete_To_Do .sectionDelete span {
     font-size: 1.38vw;
-
+    margin: auto;
+    text-align: center;
+    padding: 0 10%;
+    color: hsl(236, 33%, 92%);
 }
 
 .Delete_To_Do .sectionDelete div button {
@@ -247,4 +276,7 @@ header h1 {
     font-size: 1.38vw;
     border-radius: 0.5vw;
     cursor: pointer;
+}
+.imgCross{
+    display: none;
 }

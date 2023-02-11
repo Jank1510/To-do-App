@@ -26,7 +26,7 @@
             <div class="SwitchTheme" id="SwitchTheme"></div>
         </header>
         <div class="new_todo">
-            <div class="check_todo" onclick="New_To_Do()"></div>
+            <div class="check_todo" onclick="New_To_Do()" onkeydown="newToDoKey(event)"></div>
             <input type="text" id="todo">
         </div>
         <div class="seccion_todo" >
@@ -53,15 +53,15 @@
             
         </div>
         <div class="options_todo">
-            <span class="num_todo_left" id="To_do_Finisheds">0 items left</span>
+            <span class="num_todo_left hover" id="To_do_Finisheds">0 items left</span>
             <div>
 
-                <span class="show_all">All</span>
-                <span class="show_Active">Active</span>
-                <span class="show_Completed">Completed</span>
+                <span class="show_all hover" id="show_all"  onclick="show_all()">All</span>
+                <span class="show_Active hover" id="show_Active" onclick="show_actived()">Active</span>
+                <span class="show_Completed hover" id="show_Completed" onclick="completed()">Completed</span>
 
             </div>
-            <span class="clerar_completes">Clear Completed</span>
+            <span class="clerar_completes hover">Clear Completed</span>
         </div>
         <span>Drag and drop to recorder list</span>
     </main>
