@@ -87,7 +87,8 @@ header h1 {
 
 }
 
-.seccion_todo {background-color: #25273c;
+.seccion_todo {
+    background-color: #25273c;
     margin-top: 4%;
     box-shadow: 0px 0px 50px 0px #181824;
     max-height: 56%;
@@ -108,10 +109,12 @@ header h1 {
     flex-direction: row;
     align-items: center;
 }
-.design_ToDO img{
+
+.design_ToDO img {
     display: none;
     cursor: pointer;
-} 
+}
+
 .imgcheck {
     width: 1.5vw;
     height: 1.5vw;
@@ -186,7 +189,7 @@ header h1 {
 }
 
 @keyframes focus {
-    from { 
+    from {
         color: #342aaf;
     }
 
@@ -198,7 +201,50 @@ header h1 {
 
 .previewTxt:focus {
     animation-name: focus;
-    animation-duration: 1.5s; 
-    outline: none; 
+    animation-duration: 1.5s;
+    outline: none;
+}
 
+.Delete_To_Do {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #00000078;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.Delete_To_Do .sectionDelete {
+    width: 30%;
+    height: 25%;
+    background: #301553;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.Delete_To_Do .sectionDelete div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto;
+    margin-bottom: 5%;
+}
+
+.Delete_To_Do .sectionDelete span {
+    font-size: 1.38vw;
+
+}
+
+.Delete_To_Do .sectionDelete div button {
+    width: 20%;
+    height: 120%;
+    background: white;
+    border: none;
+    font-size: 1.38vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
 }

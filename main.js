@@ -6,40 +6,61 @@ let imprimir_to_do = () => {
     if (localStorage.getItem('Data_ToDo') != null) {
         Object_To_Do = (JSON.parse(localStorage.getItem('Data_ToDo')))
         for (let i = 0; i < Object.keys(Object_To_Do).length; i++) {
-
             output += `        
-                 <div class="design_ToDO" onmouseover="Showdelete(${i+1}${i+1}${i+1})" onmouseout="Ocultdelete(${i+1}${i+1}${i+1})">
+                 <div class="design_ToDO" onmouseover="Showdelete(${i + 1}${i + 1}${i + 1})" onmouseout="Ocultdelete(${i + 1}${i + 1}${i + 1})">
                     <div class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${i}" onClick='check_To_Do(${i})'>
                         <img src="./assets/icon-check.svg" alt="chek">
                     </div>
                     <span tabindex="${propiertiesADD}" class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${i}${i}" >
                         ${Object_To_Do[`ChildTodoObject${i}`]['nameTodo']}
                     </span>
-                    <img id="${i+1}${i+1}${i+1}" onclick="Delete_To_Do(${i})" class="imgCross" src="./assets/icon-cross.svg" alt="Cross">
+                    <img id="${i + 1}${i + 1}${i + 1}" onclick="Delete_To_Do(${i})" class="imgCross" src="./assets/icon-cross.svg" alt="Cross">
                 </div>
                 `//vamos creando un template string que contenga todos los todo añadidos  
         }
-    propiertiesADD=Object.keys(Object_To_Do).length//lleva el orden de la cantidad de veces que se crea un todo        
+        propiertiesADD = Object.keys(Object_To_Do).length//lleva el orden de la cantidad de veces que se crea un todo        
     }
-    document.getElementById('new_toDOs').innerHTML = output//y añadimos todos los todos ala vista 
-
-    let Ultimo_To_do=document.getElementById(`${propiertiesADD-1}${propiertiesADD-1}`)   
-     Ultimo_To_do.focus()
-     Ultimo_To_do.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
+    document.getElementById('new_toDOs').innerHTML = output//y añadimos todos los todos ala vista
+    let Ultimo_To_do = document.getElementById(`${propiertiesADD - 1}${propiertiesADD - 1}`)
+    Ultimo_To_do.focus()
+    Ultimo_To_do.scrollIntoView({ behavior: 'smooth', block: 'center' });
     output = ''
 }
-let Showdelete=(id)=>{
-    document.getElementById(id).style.display='block'
+let Showdelete = (id) => {
+    document.getElementById(id).style.display = 'block'
 }
-let Ocultdelete=(id)=>{
-    document.getElementById(id).style.display='none'
+let Ocultdelete = (id) => {
+    document.getElementById(id).style.display = 'none'
 }
-let Delete_To_Do =(position_ToDo)=>{//quedamos por aca, no funciona aun.. al borrar un elm¿emento se desordena en el localstorage 
-    console.log(position_ToDo)
-    delete Object_To_Do[`ChildTodoObject${position_ToDo}`]
-    localStorage.setItem('Data_ToDo', JSON.stringify(Object_To_Do))//guarda los cambios
-    imprimir_to_do()
+//funciones para eliminar un todo
+let DeleteTodoBoolean=false
+let Delete_To_Do = (position_ToDo) => {//quedamos por aca, no funciona aun.. al borrar un elm¿emento se desordena en el localstorage 
+    document.getElementById('deleteTODO').style.display = 'block'
+    if(DeleteTodoBoolean==true){
+        delete Object_To_Do[`ChildTodoObject${position_ToDo}`]
+        let NewPropiertiesADD = 0
+        let NewObject_To_Do = {}//nuevo objeto para restructurar el orden de childobject del objeto anterior 
+        for (const iterator in Object_To_Do) {
+            NewObject_To_Do[`ChildTodoObject${NewPropiertiesADD}`] = {
+                check: Object_To_Do[iterator]['check'],
+                nameTodo: Object_To_Do[iterator]['nameTodo']
+            };//añadimos un objeto todo dentro del objeto padre 
+            NewPropiertiesADD++
+        }
+        Object_To_Do = NewObject_To_Do
+        localStorage.setItem('Data_ToDo', JSON.stringify(Object_To_Do))//guarda los cambios
+        imprimir_to_do()
+    }
+    
+}
+let Delete = () => {
+//quedamos aca, toca arreglar bien lo de eliminar ya q el delete_to_do se llama una vez y no borra sino llamandolo dos veces
+}
+let OpcionUser = (deleteTODO) => {
+    
+    document.getElementById('deleteTODO').style.display = 'none'
+    DeleteTodoBoolean= deleteTODO
+
 }
 //funcion para agregar to-do
 let New_To_Do = () => {
@@ -51,7 +72,6 @@ let New_To_Do = () => {
     localStorage.setItem('Data_ToDo', JSON.stringify(Object_To_Do))//lo guardamos en el localstorage    
     imprimir_to_do()
     to_do_finished()
-
 }
 //funcion para marcar cuando el to-do esta listo
 let check_To_Do = (id) => {//aqui el id es lo mismo que la posicion en el objeto ya que cmparten esa igualdad
@@ -70,7 +90,6 @@ let check_To_Do = (id) => {//aqui el id es lo mismo que la posicion en el objeto
     to_do_finished()
 }
 //funcion que indica los to-do Terminados
-
 let to_do_finished = () => {
     let To_do_Finisheds = 0
     let To_do_Left = 0
