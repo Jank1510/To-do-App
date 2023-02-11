@@ -102,7 +102,8 @@ header h1 {
     overflow-y: scroll;
 }
 
-.design_ToDO {height: 4vw;
+.design_ToDO {
+    height: 4vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -111,19 +112,25 @@ header h1 {
     background: #25273c;
     border-bottom: 1px solid hsl(235, 19%, 35%);
 }
+
 @keyframes deleteTodoAnimation {
-    from{
+    from {
         margin-top: 0%;
-    }to{
+    }
+
+    to {
         margin-top: -10.7%;
     }
 }
-.design_ToDO_Delete{
+
+.design_ToDO_Delete {
     position: relative;
-z-index: 0;animation-name: deleteTodoAnimation;
-animation-duration: 1s;
+    z-index: 0;
+    animation-name: deleteTodoAnimation;
+    animation-duration: 1s;
 }
-.design_ToDO img { 
+
+.design_ToDO img {
     cursor: pointer;
 }
 
@@ -240,7 +247,7 @@ animation-duration: 1s;
     justify-content: center;
     display: none;
     animation-name: deleteToDo;
-    animation-duration: 0.5s; 
+    animation-duration: 0.5s;
     z-index: 2;
 }
 
@@ -269,7 +276,7 @@ animation-duration: 1s;
 }
 
 .Delete_To_Do .sectionDelete div button {
-    width: 20%;
+    width: 25%;
     height: 120%;
     background: white;
     border: none;
@@ -277,6 +284,26 @@ animation-duration: 1s;
     border-radius: 0.5vw;
     cursor: pointer;
 }
-.imgCross{
+
+.imgCross {
     display: none;
+}
+
+.sectionEmpty {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    color: hsl(236, 33%, 92%);
+    font-size: 1.38vw;
+}
+@keyframes animatinempydeleteCOmpleted {
+    from{
+        color:hsl(300, 60.8%, 29%)
+    }to{
+        color:hsl(235, 19%, 35%)
+    }
+}
+.empydELETEcoMPLETED{
+animation-name: animatinempydeleteCOmpleted;
+animation-duration: 1s;
 }

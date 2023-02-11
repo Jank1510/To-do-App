@@ -45,8 +45,9 @@
                 <div class="sectionDelete">
                     <span id="txt_Delete_To_Do"></span>
                 <div>
-                    <button onclick="OpcionUser(true)">Delete</button>
-                <button onclick="OpcionUser(false)">Cancel</button>
+                    <button id="delete" onclick="OpcionUser('onlyTodo')">Delete</button>
+                    <button id="deleteAll" onclick="OpcionUser('deleteAll')">Delete All</button>
+                <button onclick="OpcionUser('false')">Cancel</button>
                 </div>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                 <span class="show_Completed hover" id="show_Completed" onclick="completed()">Completed</span>
 
             </div>
-            <span class="clerar_completes hover">Clear Completed</span>
+            <span id="completedClear" class="clerar_completes hover" onclick="ClearCompleted()">Clear Completed</span>
         </div>
         <span>Drag and drop to recorder list</span>
     </main>
