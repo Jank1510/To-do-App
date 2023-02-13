@@ -10,26 +10,26 @@
     <link rel="stylesheet" href="styles.css">
     <!--Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body id="body">
     <div class="imgUp" id="imgUp"></div>
     <main>
-        <header >
+        <header>
             <h1>TODO</h1>
-            <div class="SwitchTheme" id="SwitchTheme"></div>
+            <div onclick="switchTheme()" class="SwitchTheme" id="SwitchTheme"></div>
         </header>
-        <div class="new_todo">
+        <div class="new_todo" id="newTodo">
             <div class="check_todo" onclick="New_To_Do()" onkeydown="newToDoKey(event)"></div>
             <input type="text" id="todo">
         </div>
-        <div class="seccion_todo" >
+        <div class="seccion_todo">
             <div id="seccion_todo">
                 <div class="design_ToDO">
                     <div class="imgcheck">
@@ -44,28 +44,31 @@
             <div id="deleteTODO" class="Delete_To_Do">
                 <div class="sectionDelete">
                     <span id="txt_Delete_To_Do"></span>
-                <div>
-                    <button id="delete" onclick="OpcionUser('onlyTodo')">Delete</button>
-                    <button id="deleteAll" onclick="OpcionUser('deleteAll')">Delete All</button>
-                <button onclick="OpcionUser('false')">Cancel</button>
-                </div>
+                    <div>
+                        <button id="delete" onclick="OpcionUser('onlyTodo')">Delete</button>
+                        <button id="deleteAll" onclick="OpcionUser('deleteAll')">Delete All</button>
+                        <button onclick="OpcionUser('false')">Cancel</button>
+                    </div>
                 </div>
             </div>
-            
+
         </div>
-        <div class="options_todo">
-            <span class="num_todo_left hover" id="To_do_Finisheds">0 items left</span>
+        <div class="options_todo" id="optioTOdo">
+            <span class="num_todo_left colorjs" id="To_do_Finisheds">0 items left</span>
             <div>
-
-                <span class="show_all hover" id="show_all"  onclick="show_all()">All</span>
-                <span class="show_Active hover" id="show_Active" onclick="show_actived()">Active</span>
-                <span class="show_Completed hover" id="show_Completed" onclick="completed()">Completed</span>
-
+                <span class="hover show_all colorjs" id="show_all" onclick="show_all()">All</span>
+                <span class="hover show_Active colorjs"  id="show_Active" onclick="show_actived()">Active</span>
+                <span class="hover show_Completed colorjs" id="show_Completed" onclick="completed()">Completed</span>
             </div>
-            <span id="completedClear" class="clerar_completes hover" onclick="ClearCompleted()">Clear Completed</span>
+            <span id="completedClear" class="clerar_completes hover colorjs" onclick="ClearCompleted()">Clear Completed</span>
         </div>
-        <span>Drag and drop to recorder list</span>
     </main>
+    <footer>
+        <span>Drag and drop to recorder list</span>
+        <div class="attribution">
+            Coded by <a href="https://github.com/Jank1510/">Jehan Carlos Hurtado Guerrero</a>.
+        </div>
+    </footer>
     <script src="./main.js"></script>
 </body>
 

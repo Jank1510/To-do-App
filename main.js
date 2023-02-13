@@ -1,9 +1,10 @@
-let Object_To_Do = {}
-let propiertiesADD = 0
-let output = ''
-let position_ToDoGlobalDeleteToDo
-let nofocusToDO = false
-let idTODO
+let Object_To_Do = {}//objeto con el data 
+let propiertiesADD = 0 //int que nos almacena la posicion del todo que se va a manejar
+let output = ''//string que nos concatena los to-do para imprimirlos
+let position_ToDoGlobalDeleteToDo //int que almacena la posicion del to-do a eliminar
+let nofocusToDO = false //boolean q controla la logica de focus en los elementos
+let idTODO //int para estructurar el id de los elmenttos a eliminar
+let themeDark = true //boolean para configurar el cambio de tema
 
 //FUncion que imprime en pantalla segun el localstorage
 
@@ -47,7 +48,7 @@ let Showdelete = (id) => {
     document.getElementById(id).style.display = 'block'
     idTODO = id
     switch (idTODO.toString().length) {//hay un bug cuando el numero es mayor a 9 digitos ya q extraemos 
-        //el id del img q se muestra con el cursor y nos otca agregar unos digitos mas para q se asimile alid del padre
+        //el id del img q se muestra con el cursor y nos toca agregar unos digitos mas para q se asimile alid del padre
         case 3:
             idTODO = parseInt(idTODO.toString().charAt(0) + idTODO);
             break;
@@ -259,6 +260,67 @@ let ClearCompleted = () => {
     }
 
 
+}
+
+//Funcion de diseño 'Temas'
+
+let switchTheme = () => {
+    if (themeDark == false) {
+        themeDark = true
+        document.getElementById('SwitchTheme').style.backgroundImage = 'url(./assets/icon-sun.svg)'
+        document.getElementById('imgUp').style.backgroundImage = 'url(./assets/bg-desktop-dark.jpg)'
+        document.getElementById('body').style.backgroundColor = '#181824'
+        document.getElementById('newTodo').style.backgroundColor = '#25273c'
+        document.getElementById('todo').style.color = 'hsl(233, 11%, 84%)'
+        const design_ToDO = document.querySelectorAll('.design_ToDO');
+        for (let i = 0; i < design_ToDO.length; i++) {
+            design_ToDO[i].style.backgroundColor = '#25273c';
+            design_ToDO[i].style.borderBottom='0.08vw solid hsl(235, 19%, 35%)'
+        }
+        const previewTxt = document.querySelectorAll('.previewTxt');
+        for (let i = 0; i < previewTxt.length; i++) {
+            previewTxt[i].style.color = 'hsl(233, 11%, 84%)';
+        }
+        const finish = document.querySelectorAll('.finish');
+        for (let i = 0; i < finish.length; i++) {
+            finish[i].style.color = 'hsl(235, 19%, 35%)';
+        }
+        document.getElementById('optioTOdo').style.backgroundColor = '#25273c'
+
+        const colorjs = document.querySelectorAll('.colorjs');
+        for (let i = 0; i < colorjs.length; i++) {
+            colorjs[i].style.color = 'hsl(235, 19%, 35%)';
+        }
+    }
+    else {
+        if (themeDark == true) {
+            themeDark = false
+            document.getElementById('SwitchTheme').style.backgroundImage = 'url(./assets/icon-moon.svg)'
+            document.getElementById('imgUp').style.backgroundImage = 'url(./assets/bg-desktop-light.jpg)'
+            document.getElementById('body').style.backgroundColor = '#fafafa'
+            document.getElementById('newTodo').style.backgroundColor = '#ffffff'
+            document.getElementById('todo').style.color = 'hsl(235, 19%, 35%)'
+            const design_ToDO = document.querySelectorAll('.design_ToDO');
+            for (let i = 0; i < design_ToDO.length; i++) {
+                design_ToDO[i].style.backgroundColor = '#ffffff';
+            design_ToDO[i].style.borderBottom='0.08vw solid rgb(210, 211, 219)'
+
+            }
+            const previewTxt = document.querySelectorAll('.previewTxt');
+            for (let i = 0; i < previewTxt.length; i++) {
+                previewTxt[i].style.color = 'rgb(72, 75, 106)';
+            }
+            const finish = document.querySelectorAll('.finish');
+            for (let i = 0; i < finish.length; i++) {
+                finish[i].style.color = 'hsl(233, 11%, 84%)';
+            }
+            document.getElementById('optioTOdo').style.backgroundColor = '#ffffff'
+            const colorjs = document.querySelectorAll('.colorjs');
+            for (let i = 0; i < colorjs.length; i++) {
+                colorjs[i].style.color = 'hsl(236, 9%, 61%)';
+            }
+        }
+    }
 }
 
 //funciones que arrancan con la app
