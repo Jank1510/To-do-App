@@ -22,7 +22,8 @@ body {
     left: 0;
 }
 
-main {height: 80vh;
+main {
+    height: 80vh;
     width: 38vw;
     margin: 8vh auto 0;
 
@@ -62,7 +63,6 @@ header h1 {
     margin-top: 4%;
     display: flex;
     flex-direction: row;
-    box-shadow: 0px 0px 50px 0px #181824;
     align-items: center;
 }
 
@@ -70,7 +70,6 @@ header h1 {
     width: 1.5vw;
     height: 1.5vw;
     border-radius: 2vw;
-    border: 0.05vw solid hsl(235, 19%, 35%);
     margin: 0 5%;
 }
 
@@ -91,7 +90,6 @@ header h1 {
 .seccion_todo {
     background-color: #25273c;
     margin-top: 4%;
-    box-shadow: 0px 0px 50px 0px #181824;
     max-height: 56%;
     overflow: auto;
     border-top-left-radius: 0.5vw;
@@ -110,18 +108,6 @@ header h1 {
     align-items: center;
     position: relative;
     z-index: 1;
-    background: #25273c;
-    border-bottom: 1px solid hsl(235, 19%, 35%);
-}
-
-@keyframes deleteTodoAnimation {
-    from {
-        margin-top: 0%;
-    }
-
-    to {
-        margin-top: -10.7%;
-    }
 }
 
 .design_ToDO_Delete {
@@ -159,7 +145,13 @@ header h1 {
 }
 
 .imgNoCheck:hover {
-    border: 0.1vw solid #8c9afd;
+    border: 0.1vw solid #8c9afd !important;
+
+}
+
+.check_todo:hover {
+    border: 0.1vw solid #8c9afd !important;
+    cursor: pointer;
 
 }
 
@@ -177,13 +169,11 @@ header h1 {
     border-radius: 0.5vw;
     display: flex;
     align-items: center;
-    color: hsl(236, 33%, 92%);
     font-size: 1.38vw;
 }
 
 .finish {
     text-decoration: line-through;
-    color: hsl(235, 19%, 35%);
 
 }
 
@@ -208,33 +198,13 @@ header h1 {
     cursor: pointer;
 }
 
-@keyframes focus {
-    from {
-        color: #8a80ff;
-    }
-
-    to {
-        color: hsl(236, 33%, 92%);
-    }
-
-}
-
 .previewTxt:focus {
     animation-name: focus;
     animation-duration: 1.5s;
     outline: none;
 }
 
-@keyframes deleteToDo {
-    from {
-        opacity: 0;
-    }
 
-    to {
-        opacity: 1;
-
-    }
-}
 
 .Delete_To_Do {
     position: absolute;
@@ -297,32 +267,30 @@ header h1 {
     color: hsl(236, 33%, 92%);
     font-size: 1.38vw;
 }
-@keyframes animatinempydeleteCOmpleted {
-    from{
-        color:hsl(300, 60.8%, 29%)
-    }to{
-        color:hsl(235, 19%, 35%)
-    }
+
+.empydELETEcoMPLETED {
+    animation-name: animatinempydeleteCOmpleted;
+    animation-duration: 1s;
 }
-.empydELETEcoMPLETED{
-animation-name: animatinempydeleteCOmpleted;
-animation-duration: 1s;
-}
-footer{
+
+footer {
     height: 12vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-between;
-font-size: 1.38vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.38vw;
 }
-footer span{
+
+footer span {
     color: hsl(235, 19%, 35%);
 }
-footer .attribution *{
-    color: hsl(250.9, 68%, 38%);
+
+footer .attribution * {
+    color: hsl(304.9, 48.7%, 44.3%);
     text-decoration: none;
 }
+
 footer .attribution {
     color: hsl(236, 33%, 92%);
     text-decoration: none;

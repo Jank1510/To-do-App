@@ -8,6 +8,7 @@
     <title>To-Do </title>
     <link rel="icon" href="./assets/to-do-list.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animation.css">
     <!--Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,10 +27,10 @@
             <div onclick="switchTheme()" class="SwitchTheme" id="SwitchTheme"></div>
         </header>
         <div class="new_todo" id="newTodo">
-            <div class="check_todo" onclick="New_To_Do()" onkeydown="newToDoKey(event)"></div>
+            <div id="CheckToDo" class="check_todo" onclick="New_To_Do()" onkeydown="newToDoKey(event)"></div>
             <input type="text" id="todo">
         </div>
-        <div class="seccion_todo">
+        <div class="seccion_todo" id="sectionTodoShadow">
             <div id="seccion_todo">
                 <div class="design_ToDO">
                     <div class="imgcheck">
@@ -64,8 +65,8 @@
         </div>
     </main>
     <footer>
-        <span>Drag and drop to recorder list</span>
-        <div class="attribution">
+        <span id="footer">Drag and drop to recorder list</span>
+        <div  id="footerCreditos" class="attribution">
             Coded by <a href="https://github.com/Jank1510/">Jehan Carlos Hurtado Guerrero</a>.
         </div>
     </footer>

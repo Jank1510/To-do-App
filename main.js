@@ -4,22 +4,29 @@ let output = ''//string que nos concatena los to-do para imprimirlos
 let position_ToDoGlobalDeleteToDo //int que almacena la posicion del to-do a eliminar
 let nofocusToDO = false //boolean q controla la logica de focus en los elementos
 let idTODO //int para estructurar el id de los elmenttos a eliminar
-let themeDark = true //boolean para configurar el cambio de tema
+let themeDark = false //boolean para configurar el cambio de tema
 
 //FUncion que imprime en pantalla segun el localstorage
 
 let imprimir_to_do = () => {
-
+    //variables que nos identifican en que tema esta para asi no perder el diseño del tema al agregar un elemento
+    //-fondo y borde del to-do
+    let DesignTodoSwitchTheme = `background-color:${themeDark ? "rgb(37, 39, 60);" : "rgb(255, 255, 255);"}` +
+        `border-bottom: ${themeDark ? "0.08vw solid rgb(72, 75, 106);" : "0.08vw solid rgb(210, 211, 219);"}`
+    //color del texto del span
+    let spanSwitchTheme = `color:${themeDark ? "rgb(210, 211, 219);" : "rgb(72, 75, 106);"}`
+    //indica que el to-do esta terminado
+    let spanFinishedSwitchTheme = `color:${themeDark ? "rgb(72, 75, 106);" : "rgb(210, 211, 219);"}`
     if ((localStorage.getItem('Data_ToDo') != null) && (localStorage.getItem('Data_ToDo') != '{}')) {
         output = ''
         Object_To_Do = (JSON.parse(localStorage.getItem('Data_ToDo')))//condicion que lee el localstorage para cargar los datos 
         for (let i = 0; i < Object.keys(Object_To_Do).length; i++) {
             output += `        
-                 <div id="${i + 1}${i + 1}${i + 1}${i + 1}" class="design_ToDO" onmouseover="Showdelete(${i + 1}${i + 1}${i + 1})" onmouseout="Ocultdelete(${i + 1}${i + 1}${i + 1})">
+                 <div style='${DesignTodoSwitchTheme}' id="${i + 1}${i + 1}${i + 1}${i + 1}" class="design_ToDO" onmouseover="Showdelete(${i + 1}${i + 1}${i + 1})" onmouseout="Ocultdelete(${i + 1}${i + 1}${i + 1})">
                     <div class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${i}" onClick='check_To_Do(${i})'>
                         <img src="./assets/icon-check.svg" alt="chek">
                     </div>
-                    <span tabindex="${propiertiesADD}" class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${i}${i}" >
+                    <span style='${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? spanFinishedSwitchTheme : spanSwitchTheme}' tabindex="${propiertiesADD}" class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${i}${i}" >
                         ${Object_To_Do[`ChildTodoObject${i}`]['nameTodo']}
                     </span>
                     <img id="${i + 1}${i + 1}${i + 1}" onclick="Delete_To_Do(${i})" class="imgCross" src="./assets/icon-cross.svg" alt="Cross">
@@ -153,10 +160,14 @@ document.addEventListener("keydown", function (event) {//funcion q permite agreg
 //funcion para marcar cuando el to-do esta listo
 
 let check_To_Do = (id) => {//aqui el id es lo mismo que la posicion en el objeto ya que cmparten esa igualdad
+    //variables que nos identifican en que tema esta para asi no perder el diseño del tema al agregar un elemento
+    //-fondo y borde del to-do
+    let txtSwitchTheme = `${themeDark ? "rgb(72, 75, 106)" : "rgb(210, 211, 219)"}`
     if (Object_To_Do[`ChildTodoObject${id}`]['check'] == false) {//identificamos que ese elemento este check o no y guardamos los cambios en el objeto
         Object_To_Do[`ChildTodoObject${id}`]['check'] = true
         document.getElementById(id).className = 'imgcheck'
         document.getElementById(`${id}${id}`).className = 'previewTxt finish'
+        document.getElementById(`${id}${id}`).style.background = txtSwitchTheme
     } else {
         if (Object_To_Do[`ChildTodoObject${id}`]['check'] == true) {
             Object_To_Do[`ChildTodoObject${id}`]['check'] = false
@@ -185,37 +196,50 @@ let to_do_finished = () => {
 }
 
 // FUNCIONES DE FILTRADO
+let bluetxtFiltrado = 'show_all'
 
 let show_all = () => {
     document.getElementById('show_Active').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_all').style.color = '#4070dd'
     document.getElementById('show_Completed').style.color = 'hsl(235, 19%, 35%)'
     imprimir_to_do()
+    bluetxtFiltrado = 'show_all'
 }
 let show_actived = () => {
     document.getElementById('show_all').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_Active').style.color = '#4070dd'
     document.getElementById('show_Completed').style.color = 'hsl(235, 19%, 35%)'
     showFilterTodo(false)
+    bluetxtFiltrado = 'show_actived'
 }
 let completed = () => {
     document.getElementById('show_Active').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_all').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_Completed').style.color = '#4070dd'
     showFilterTodo(true)
+    bluetxtFiltrado = 'completed'
+
 }
 let showFilterTodo = (check) => {//recive un boolean q indica si esta completado o no para condicionarlo y motrar solo los marcados
     let propiertiesADDFilterActive = 0
     let empty = true
+    //variables que nos identifican en que tema esta para asi no perder el diseño del tema al agregar un elemento
+    //-fondo y borde del to-do
+    let DesignTodoSwitchTheme = `background-color:${themeDark ? "rgb(37, 39, 60);" : "rgb(255, 255, 255);"}` +
+        `border-bottom: ${themeDark ? "0.08vw solid rgb(72, 75, 106);" : "0.08vw solid rgb(210, 211, 219);"}`
+    //color del texto del span
+    let spanSwitchTheme = `color:${themeDark ? "rgb(210, 211, 219);" : "rgb(72, 75, 106);"}`
+    //indica que el to-do esta terminado
+    let spanFinishedSwitchTheme = `color:${themeDark ? "rgb(72, 75, 106);" : "rgb(210, 211, 219);"}`
     output = ''
     for (const key in Object_To_Do) {
         if (Object_To_Do[key]['check'] == check) {
             output += `        
-                <div id="${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}" class="design_ToDO" onmouseover="Showdelete(${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1})" onmouseout="Ocultdelete(${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1})">
+                <div style='${DesignTodoSwitchTheme}' id="${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}" class="design_ToDO" onmouseover="Showdelete(${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1})" onmouseout="Ocultdelete(${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1})">
                     <div class="${Object_To_Do[key]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${propiertiesADDFilterActive}" onClick='check_To_Do(${propiertiesADDFilterActive})'>
                         <img src="./assets/icon-check.svg" alt="chek">
                     </div>
-                    <span tabindex="${propiertiesADDFilterActive}" class="${Object_To_Do[key]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${propiertiesADDFilterActive}${propiertiesADDFilterActive}" >
+                    <span  style='${check == true ? spanFinishedSwitchTheme : spanSwitchTheme}'tabindex="${propiertiesADDFilterActive}" class="${Object_To_Do[key]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${propiertiesADDFilterActive}${propiertiesADDFilterActive}" >
                         ${Object_To_Do[`ChildTodoObject${propiertiesADDFilterActive}`]['nameTodo']}
                     </span>
                     <img id="${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}" onclick="Delete_To_Do(${propiertiesADDFilterActive})" class="imgCross" src="./assets/icon-cross.svg" alt="Cross">
@@ -227,8 +251,8 @@ let showFilterTodo = (check) => {//recive un boolean q indica si esta completado
     }
     if (empty == true) {
         output += `        
-            <div class="design_ToDO"> 
-                <span class='sectionEmpty'>
+            <div style='${DesignTodoSwitchTheme}' class="design_ToDO"> 
+                <span  style='${spanSwitchTheme}' class='sectionEmpty'>
                     Ops! This section is empty
                 </span>
             </div>
@@ -269,13 +293,15 @@ let switchTheme = () => {
         themeDark = true
         document.getElementById('SwitchTheme').style.backgroundImage = 'url(./assets/icon-sun.svg)'
         document.getElementById('imgUp').style.backgroundImage = 'url(./assets/bg-desktop-dark.jpg)'
-        document.getElementById('body').style.backgroundColor = '#181824'
+        bodyElement = document.getElementById('body')
+        bodyElement.style.backgroundColor = '#181824'
+        bodyElement.style.animationName = 'temheChangeColorDarkToWhite'
         document.getElementById('newTodo').style.backgroundColor = '#25273c'
         document.getElementById('todo').style.color = 'hsl(233, 11%, 84%)'
         const design_ToDO = document.querySelectorAll('.design_ToDO');
         for (let i = 0; i < design_ToDO.length; i++) {
             design_ToDO[i].style.backgroundColor = '#25273c';
-            design_ToDO[i].style.borderBottom='0.08vw solid hsl(235, 19%, 35%)'
+            design_ToDO[i].style.borderBottom = '0.08vw solid hsl(235, 19%, 35%)'
         }
         const previewTxt = document.querySelectorAll('.previewTxt');
         for (let i = 0; i < previewTxt.length; i++) {
@@ -286,25 +312,33 @@ let switchTheme = () => {
             finish[i].style.color = 'hsl(235, 19%, 35%)';
         }
         document.getElementById('optioTOdo').style.backgroundColor = '#25273c'
-
         const colorjs = document.querySelectorAll('.colorjs');
         for (let i = 0; i < colorjs.length; i++) {
             colorjs[i].style.color = 'hsl(235, 19%, 35%)';
         }
+        document.getElementById('footerCreditos').style.color = 'hsl(235, 19%, 35%)'
+        document.getElementById('footer').style.color = 'hsl(235, 19%, 35%)'
+        document.getElementById('sectionTodoShadow').style.boxShadow = '0px 4vw 3vw -1vw #040404'
+        const imgNoCheck = document.querySelectorAll('.imgNoCheck');
+        for (let i = 0; i < imgNoCheck.length; i++) {
+            imgNoCheck[i].style.border = '0.1vw solid hsl(235, 19%, 35%)';
+        }
+        document.getElementById('CheckToDo').style.border = '0.1vw solid hsl(235, 19%, 35%)';
     }
     else {
         if (themeDark == true) {
             themeDark = false
             document.getElementById('SwitchTheme').style.backgroundImage = 'url(./assets/icon-moon.svg)'
             document.getElementById('imgUp').style.backgroundImage = 'url(./assets/bg-desktop-light.jpg)'
-            document.getElementById('body').style.backgroundColor = '#fafafa'
+            bodyElement = document.getElementById('body')
+            bodyElement.style.backgroundColor = '#fafafa'
+            bodyElement.style.animationName = 'temheChangeColorWHiteToDark'
             document.getElementById('newTodo').style.backgroundColor = '#ffffff'
             document.getElementById('todo').style.color = 'hsl(235, 19%, 35%)'
             const design_ToDO = document.querySelectorAll('.design_ToDO');
             for (let i = 0; i < design_ToDO.length; i++) {
                 design_ToDO[i].style.backgroundColor = '#ffffff';
-            design_ToDO[i].style.borderBottom='0.08vw solid rgb(210, 211, 219)'
-
+                design_ToDO[i].style.borderBottom = '0.08vw solid rgb(210, 211, 219)'
             }
             const previewTxt = document.querySelectorAll('.previewTxt');
             for (let i = 0; i < previewTxt.length; i++) {
@@ -319,10 +353,31 @@ let switchTheme = () => {
             for (let i = 0; i < colorjs.length; i++) {
                 colorjs[i].style.color = 'hsl(236, 9%, 61%)';
             }
+            document.getElementById('footerCreditos').style.color = 'rgb(147, 148, 165)'
+            document.getElementById('footer').style.color = 'rgb(147, 148, 165)'
+            document.getElementById('sectionTodoShadow').style.boxShadow = '0px 4vw 3vw -1vw #ccc'
+            const imgNoCheck = document.querySelectorAll('.imgNoCheck');
+            for (let i = 0; i < imgNoCheck.length; i++) {
+                imgNoCheck[i].style.border = '0.05vw solid rgb(210, 211, 219)';
+            }
+            document.getElementById('CheckToDo').style.border = '0.05vw solid rgb(210, 211, 219)';
+
+        }
+    }
+    if (bluetxtFiltrado == 'show_all') {
+        document.getElementById('show_all').style.color = 'rgb(64, 112, 221)'
+    } else {
+        if (bluetxtFiltrado == 'show_actived') {
+            document.getElementById('show_Active').style.color = 'rgb(64, 112, 221)'
+        } else {
+            if (bluetxtFiltrado == 'completed') {
+                document.getElementById('show_Completed').style.color = 'rgb(64, 112, 221)'
+            }
         }
     }
 }
 
 //funciones que arrancan con la app
+switchTheme()
 show_all()
 to_do_finished()

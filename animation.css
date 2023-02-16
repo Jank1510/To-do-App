@@ -1,0 +1,77 @@
+@keyframes focus {
+    0% {
+        margin-top: 0;
+    }
+
+    25% {
+        margin-top: 0.5vw;
+    }
+
+    50% {
+        margin-top: 0;
+    }
+
+    75% {
+        margin-top: -0.5vw;
+
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+@keyframes deleteToDo {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+
+    }
+}
+
+@keyframes animatinempydeleteCOmpleted {
+    from {
+        color: hsl(300, 60.8%, 29%)
+    }
+
+    to {
+        color: hsl(235, 19%, 35%)
+    }
+}
+
+@keyframes deleteTodoAnimation {
+    from {
+        margin-top: 0%;
+    }
+
+    to {
+        margin-top: -10.7%;
+    }
+}
+
+@keyframes temheChangeColorDarkToWhite{
+    to {
+        background-color: rgb(24, 24, 36);
+    }
+
+    from {
+        background-color:rgb(250, 250, 250);
+    }
+
+}
+@keyframes temheChangeColorWHiteToDark{
+    to {
+        background-color:rgb(250, 250, 250);
+    }
+
+    from {
+        background-color: rgb(24, 24, 36);
+    }
+
+}
+body{ 
+    animation-duration: 0.5s;
+}
