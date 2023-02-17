@@ -43,18 +43,18 @@
                 <div id="new_toDOs"></div>
             </div>
             <div id="deleteTODO" class="Delete_To_Do">
-                <div class="sectionDelete">
+                <div class="sectionDelete" id="sectionDelete">
                     <span id="txt_Delete_To_Do"></span>
                     <div>
                         <button id="delete" onclick="OpcionUser('onlyTodo')">Delete</button>
                         <button id="deleteAll" onclick="OpcionUser('deleteAll')">Delete All</button>
-                        <button onclick="OpcionUser('false')">Cancel</button>
+                        <button id="cancelDelete"onclick="OpcionUser('false')">Cancel</button>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="options_todo" id="optioTOdo">
+        <div class="options_todo desktop" id="optioTOdo">
             <span class="num_todo_left colorjs" id="To_do_Finisheds">0 items left</span>
             <div>
                 <span class="hover show_all colorjs" id="show_all" onclick="show_all()">All</span>
@@ -62,6 +62,19 @@
                 <span class="hover show_Completed colorjs" id="show_Completed" onclick="completed()">Completed</span>
             </div>
             <span id="completedClear" class="clerar_completes hover colorjs" onclick="ClearCompleted()">Clear Completed</span>
+        </div>
+        <div class="options_todo celphone" id="optioTOdo">
+            <div class="upcel" id="upcel">
+
+            <span class="num_todo_left colorjs" id="To_do_Finisheds2">0 items left</span>
+            <span id="completedClear2" class="clerar_completes hover colorjs" onclick="ClearCompleted()">Clear Completed</span>
+
+            </div>
+            <div class="downcel" id="downcel">
+                <span class="hover show_all colorjs" id="show_all2" onclick="show_all()">All</span>
+                <span class="hover show_Active colorjs"  id="show_Active2" onclick="show_actived()">Active</span>
+                <span class="hover show_Completed colorjs" id="show_Completed2" onclick="completed()">Completed</span>
+            </div>
         </div>
     </main>
     <footer>

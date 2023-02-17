@@ -17,13 +17,14 @@ let imprimir_to_do = () => {
     let spanSwitchTheme = `color:${themeDark ? "rgb(210, 211, 219);" : "rgb(72, 75, 106);"}`
     //indica que el to-do esta terminado
     let spanFinishedSwitchTheme = `color:${themeDark ? "rgb(72, 75, 106);" : "rgb(210, 211, 219);"}`
+    let BorderFinishedSwitchTheme = `${themeDark ? "0.1vw solid rgb(72, 75, 106);" : "0.05vw solid rgb(210, 211, 219);"}`
     if ((localStorage.getItem('Data_ToDo') != null) && (localStorage.getItem('Data_ToDo') != '{}')) {
         output = ''
         Object_To_Do = (JSON.parse(localStorage.getItem('Data_ToDo')))//condicion que lee el localstorage para cargar los datos 
         for (let i = 0; i < Object.keys(Object_To_Do).length; i++) {
             output += `        
-                 <div style='${DesignTodoSwitchTheme}' id="${i + 1}${i + 1}${i + 1}${i + 1}" class="design_ToDO" onmouseover="Showdelete(${i + 1}${i + 1}${i + 1})" onmouseout="Ocultdelete(${i + 1}${i + 1}${i + 1})">
-                    <div class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${i}" onClick='check_To_Do(${i})'>
+                 <div style='${DesignTodoSwitchTheme}' id="${i + 1}${i + 1}${i + 1}${i + 1}" class="design_ToDO" onpointerdown="Showdelete(${i + 1}${i + 1}${i + 1})" onmouseover="Showdelete(${i + 1}${i + 1}${i + 1})" onmouseout="Ocultdelete(${i + 1}${i + 1}${i + 1})">
+                    <div style='border:${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'none' : BorderFinishedSwitchTheme}' class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${i}" onClick='check_To_Do(${i})'>
                         <img src="./assets/icon-check.svg" alt="chek">
                     </div>
                     <span style='${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? spanFinishedSwitchTheme : spanSwitchTheme}' tabindex="${propiertiesADD}" class="${Object_To_Do[`ChildTodoObject${i}`]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${i}${i}" >
@@ -65,17 +66,21 @@ let Showdelete = (id) => {
         case 9:
             idTODO = parseInt(idTODO.toString().substr(0, 3) + idTODO);
             break;
-    }
+    } 
+
 }
 let Ocultdelete = (id) => {
-    document.getElementById(id).style.display = 'none'
+    if (document.getElementById('body').clientWidth >= 850) {
+
+        document.getElementById(id).style.display = 'none'
+    }
 }
 let Delete_To_Do = (position_ToDo) => { //esta funcion muestra el diseño de eliminar un todo
     position_ToDoGlobalDeleteToDo = position_ToDo
     document.getElementById('deleteTODO').style.display = 'flex'
     document.getElementById('deleteAll').style.display = 'none'
     document.getElementById('delete').style.display = 'block'
-    let txtSpan = 'Are you sure you want to delete the task "' + Object_To_Do[`ChildTodoObject${position_ToDo}`]['nameTodo'] + '"'
+    let txtSpan = 'Are you sure you want to delete the task "' + '"?'
     document.getElementById('txt_Delete_To_Do').innerHTML = txtSpan
 }
 let OpcionUser = (deleteTODO) => {//esta funcion tiene la logica de eliminar un todo
@@ -193,6 +198,7 @@ let to_do_finished = () => {
     }
     To_do_Left = (Object.keys(Object_To_Do).length) - To_do_Finisheds
     document.getElementById('To_do_Finisheds').innerHTML = `${To_do_Left} items left`
+    document.getElementById('To_do_Finisheds2').innerHTML = `${To_do_Left} items left`
 }
 
 // FUNCIONES DE FILTRADO
@@ -200,22 +206,31 @@ let bluetxtFiltrado = 'show_all'
 
 let show_all = () => {
     document.getElementById('show_Active').style.color = 'hsl(235, 19%, 35%)'
+    document.getElementById('show_Active2').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_all').style.color = '#4070dd'
+    document.getElementById('show_all2').style.color = '#4070dd'
     document.getElementById('show_Completed').style.color = 'hsl(235, 19%, 35%)'
+    document.getElementById('show_Completed2').style.color = 'hsl(235, 19%, 35%)'
     imprimir_to_do()
     bluetxtFiltrado = 'show_all'
 }
 let show_actived = () => {
     document.getElementById('show_all').style.color = 'hsl(235, 19%, 35%)'
+    document.getElementById('show_all2').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_Active').style.color = '#4070dd'
+    document.getElementById('show_Active2').style.color = '#4070dd'
     document.getElementById('show_Completed').style.color = 'hsl(235, 19%, 35%)'
+    document.getElementById('show_Completed2').style.color = 'hsl(235, 19%, 35%)'
     showFilterTodo(false)
     bluetxtFiltrado = 'show_actived'
 }
 let completed = () => {
     document.getElementById('show_Active').style.color = 'hsl(235, 19%, 35%)'
+    document.getElementById('show_Active2').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_all').style.color = 'hsl(235, 19%, 35%)'
+    document.getElementById('show_all2').style.color = 'hsl(235, 19%, 35%)'
     document.getElementById('show_Completed').style.color = '#4070dd'
+    document.getElementById('show_Completed2').style.color = '#4070dd'
     showFilterTodo(true)
     bluetxtFiltrado = 'completed'
 
@@ -231,12 +246,13 @@ let showFilterTodo = (check) => {//recive un boolean q indica si esta completado
     let spanSwitchTheme = `color:${themeDark ? "rgb(210, 211, 219);" : "rgb(72, 75, 106);"}`
     //indica que el to-do esta terminado
     let spanFinishedSwitchTheme = `color:${themeDark ? "rgb(72, 75, 106);" : "rgb(210, 211, 219);"}`
+    let BorderFinishedSwitchTheme = `${themeDark ? "0.1vw solid rgb(72, 75, 106);" : "0.05vw solid rgb(210, 211, 219);"}`
     output = ''
     for (const key in Object_To_Do) {
         if (Object_To_Do[key]['check'] == check) {
             output += `        
                 <div style='${DesignTodoSwitchTheme}' id="${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}" class="design_ToDO" onmouseover="Showdelete(${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1})" onmouseout="Ocultdelete(${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1}${propiertiesADDFilterActive + 1})">
-                    <div class="${Object_To_Do[key]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${propiertiesADDFilterActive}" onClick='check_To_Do(${propiertiesADDFilterActive})'>
+                    <div style='border:${Object_To_Do[`ChildTodoObject${propiertiesADDFilterActive}`]['check'] == true ? 'none' : BorderFinishedSwitchTheme}' class="${Object_To_Do[key]['check'] == true ? 'imgcheck' : 'imgNoCheck'}" id="${propiertiesADDFilterActive}" onClick='check_To_Do(${propiertiesADDFilterActive})'>
                         <img src="./assets/icon-check.svg" alt="chek">
                     </div>
                     <span  style='${check == true ? spanFinishedSwitchTheme : spanSwitchTheme}'tabindex="${propiertiesADDFilterActive}" class="${Object_To_Do[key]['check'] == true ? 'previewTxt finish' : 'previewTxt'}" id="${propiertiesADDFilterActive}${propiertiesADDFilterActive}" >
@@ -274,16 +290,16 @@ let ClearCompleted = () => {
         document.getElementById('deleteTODO').style.display = 'flex'
         document.getElementById('deleteAll').style.display = 'block'
         document.getElementById('delete').style.display = 'none'
-        let txtSpan = 'Are you sure you want to delete the completed tasks'
+        let txtSpan = 'Are you sure you want to delete the completed tasks?'
         document.getElementById('txt_Delete_To_Do').innerHTML = txtSpan
     } else {//animacion para indicar que no hay todos para eliminar que esten completadps
         document.getElementById('completedClear').className = 'empydELETEcoMPLETED clerar_completes hover'
+        document.getElementById('completedClear2').className = 'empydELETEcoMPLETED clerar_completes hover'
         setTimeout(() => {
             document.getElementById('completedClear').className = 'clerar_completes hover'
+            document.getElementById('completedClear2').className = 'clerar_completes hover'
         }, 1000);
     }
-
-
 }
 
 //Funcion de diseño 'Temas'
@@ -293,12 +309,23 @@ let switchTheme = () => {
         themeDark = true
         document.getElementById('SwitchTheme').style.backgroundImage = 'url(./assets/icon-sun.svg)'
         document.getElementById('imgUp').style.backgroundImage = 'url(./assets/bg-desktop-dark.jpg)'
-        bodyElement = document.getElementById('body')
-        bodyElement.style.backgroundColor = '#181824'
-        bodyElement.style.animationName = 'temheChangeColorDarkToWhite'
+        document.getElementById('body').style.backgroundColor = '#181824'
         document.getElementById('newTodo').style.backgroundColor = '#25273c'
         document.getElementById('todo').style.color = 'hsl(233, 11%, 84%)'
         const design_ToDO = document.querySelectorAll('.design_ToDO');
+        document.getElementById('sectionDelete').style.backgroundColor = '#25273c'
+        document.getElementById('txt_Delete_To_Do').style.color = 'hsl(236, 33%, 92%)'
+        document.getElementById('deleteAll').style.backgroundColor = 'hsl(233, 11%, 84%)'
+        document.getElementById('deleteAll').style.color = 'rgb(72, 75, 106)'
+        document.getElementById('delete').style.backgroundColor = 'hsl(233, 11%, 84%)'
+        document.getElementById('delete').style.color = 'rgb(72, 75, 106)'
+        document.getElementById('cancelDelete').style.color = 'rgb(72, 75, 106)'
+        document.getElementById('cancelDelete').style.backgroundColor = 'hsl(233, 11%, 84%)'
+
+        document.getElementById('downcel').style.backgroundColor='rgb(37, 39, 60)'
+        document.getElementById('upcel').style.backgroundColor='rgb(37, 39, 60)'
+        document.getElementById('upcel').style.boxShadow='rgb(37, 39, 60) 0px 0vw 4vw -1vw'
+        document.getElementById('downcel').style.boxShadow='rgb(37, 39, 60) 0px 0vw 4vw -1vw'
         for (let i = 0; i < design_ToDO.length; i++) {
             design_ToDO[i].style.backgroundColor = '#25273c';
             design_ToDO[i].style.borderBottom = '0.08vw solid hsl(235, 19%, 35%)'
@@ -330,11 +357,21 @@ let switchTheme = () => {
             themeDark = false
             document.getElementById('SwitchTheme').style.backgroundImage = 'url(./assets/icon-moon.svg)'
             document.getElementById('imgUp').style.backgroundImage = 'url(./assets/bg-desktop-light.jpg)'
-            bodyElement = document.getElementById('body')
-            bodyElement.style.backgroundColor = '#fafafa'
-            bodyElement.style.animationName = 'temheChangeColorWHiteToDark'
+            document.getElementById('body').style.backgroundColor = '#FAFAFA'
             document.getElementById('newTodo').style.backgroundColor = '#ffffff'
             document.getElementById('todo').style.color = 'hsl(235, 19%, 35%)'
+            document.getElementById('sectionDelete').style.backgroundColor = '#fff'
+            document.getElementById('txt_Delete_To_Do').style.color = 'rgb(72, 75, 106)'
+            document.getElementById('deleteAll').style.backgroundColor = 'rgb(72, 75, 106)'
+            document.getElementById('deleteAll').style.color = 'white'
+            document.getElementById('delete').style.backgroundColor = 'rgb(72, 75, 106)'
+            document.getElementById('delete').style.color = 'white'
+            document.getElementById('cancelDelete').style.color = 'white'
+            document.getElementById('cancelDelete').style.backgroundColor = 'rgb(72, 75, 106)'
+            document.getElementById('downcel').style.backgroundColor='white'
+            document.getElementById('upcel').style.backgroundColor='white'
+            document.getElementById('upcel').style.boxShadow='rgb(204, 204, 204) 0px 0vw 4vw -1vw'
+            document.getElementById('downcel').style.boxShadow='rgb(204, 204, 204) 0px 0vw 4vw -1vw'
             const design_ToDO = document.querySelectorAll('.design_ToDO');
             for (let i = 0; i < design_ToDO.length; i++) {
                 design_ToDO[i].style.backgroundColor = '#ffffff';
@@ -361,7 +398,6 @@ let switchTheme = () => {
                 imgNoCheck[i].style.border = '0.05vw solid rgb(210, 211, 219)';
             }
             document.getElementById('CheckToDo').style.border = '0.05vw solid rgb(210, 211, 219)';
-
         }
     }
     if (bluetxtFiltrado == 'show_all') {

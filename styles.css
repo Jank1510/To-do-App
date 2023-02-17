@@ -23,8 +23,6 @@ body {
 }
 
 main {
-    height: 80vh;
-    width: 38vw;
     margin: 8vh auto 0;
 
 }
@@ -39,8 +37,6 @@ header {
 }
 
 header h1 {
-    letter-spacing: 0.7vw;
-    font-size: 2.5vw;
     color: white;
     font-weight: bolder;
     font-family: 'Josefin Sans', sans-serif;
@@ -50,16 +46,13 @@ header h1 {
     background-image: url(./assets/icon-sun.svg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    width: 2.5vw;
-    height: 2.5vw;
     cursor: pointer;
 }
 
 .new_todo {
+
     width: 100%;
-    height: 10%;
     background-color: #25273c;
-    border-radius: 0.5vw;
     margin-top: 4%;
     display: flex;
     flex-direction: row;
@@ -67,9 +60,6 @@ header h1 {
 }
 
 .check_todo {
-    width: 1.5vw;
-    height: 1.5vw;
-    border-radius: 2vw;
     margin: 0 5%;
 }
 
@@ -78,7 +68,6 @@ header h1 {
     height: 50%;
     background: none;
     border: none;
-    font-size: 1.38vw;
     color: hsl(233, 11%, 84%);
 }
 
@@ -90,10 +79,7 @@ header h1 {
 .seccion_todo {
     background-color: #25273c;
     margin-top: 4%;
-    max-height: 56%;
     overflow: auto;
-    border-top-left-radius: 0.5vw;
-    border-top-right-radius: 0.5vw;
 }
 
 .container_todo {
@@ -102,7 +88,6 @@ header h1 {
 }
 
 .design_ToDO {
-    height: 4vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -111,9 +96,9 @@ header h1 {
 }
 
 .design_ToDO_Delete {
+
     position: relative;
     z-index: 0;
-    animation-name: deleteTodoAnimation;
     animation-duration: 1s;
 }
 
@@ -122,9 +107,6 @@ header h1 {
 }
 
 .imgcheck {
-    width: 1.5vw;
-    height: 1.5vw;
-    border-radius: 2vw;
     margin: 0 5%;
     display: flex;
     justify-content: center;
@@ -134,12 +116,8 @@ header h1 {
 }
 
 .imgNoCheck {
-    width: 1.5vw;
-    height: 1.5vw;
-    border-radius: 2vw;
     margin: 0 5%;
     background: #06060600;
-    border: 0.1vw solid hsl(235, 19%, 35%);
     cursor: pointer;
     transition: border 0.5s;
 }
@@ -165,11 +143,10 @@ header h1 {
 
 .previewTxt {
     width: 80%;
-    height: 2vw;
     border-radius: 0.5vw;
     display: flex;
     align-items: center;
-    font-size: 1.38vw;
+    overflow-x: scroll;
 }
 
 .finish {
@@ -181,16 +158,43 @@ header h1 {
     display: flex;
     justify-content: space-around;
     color: hsl(235, 19%, 35%);
-    font-size: 1.15vw;
-    padding: 3% 0;
-    border-bottom-left-radius: 0.5vw;
-    border-bottom-right-radius: 0.5vw;
-    background-color: #25273c;
 }
 
-.options_todo div {
+
+.upcel {
+    background-color: #25273c;
+    width: 100%;
     display: flex;
-    column-gap: 1vw;
+    margin: auto;
+    height: 4rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.downcel {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+    margin-top: 1.75rem;
+    background-color: #25273c;
+    height: 4rem;
+    border-radius: 0.5rem;
+    align-items: center;
+}
+
+.upcel #To_do_Finisheds2 {
+    margin-left: 1rem;
+}
+
+.upcel #completedClear2 {
+    margin-right: 1rem;
+
+}
+
+#footerCreditos {
+    text-align: center;
 }
 
 .hover:hover {
@@ -223,10 +227,7 @@ header h1 {
 }
 
 .Delete_To_Do .sectionDelete {
-    width: 30%;
-    height: 25%;
     background: #25273c;
-    border-radius: 1vw;
     display: flex;
     flex-direction: column;
 }
@@ -239,7 +240,6 @@ header h1 {
 }
 
 .Delete_To_Do .sectionDelete span {
-    font-size: 1.38vw;
     margin: auto;
     text-align: center;
     padding: 0 10%;
@@ -256,16 +256,12 @@ header h1 {
     cursor: pointer;
 }
 
-.imgCross {
-    display: none;
-}
 
 .sectionEmpty {
     text-align: center;
     margin: auto;
     width: 100%;
     color: hsl(236, 33%, 92%);
-    font-size: 1.38vw;
 }
 
 .empydELETEcoMPLETED {
@@ -279,7 +275,6 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.38vw;
 }
 
 footer span {
@@ -294,4 +289,242 @@ footer .attribution * {
 footer .attribution {
     color: hsl(236, 33%, 92%);
     text-decoration: none;
+}
+
+@media (min-width: 250px) {
+    main {
+        width: 90vw;
+    }
+
+    header h1 {
+        letter-spacing: 0.7rem;
+        font-size: 2.5rem;
+    }
+
+    .SwitchTheme {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .new_todo {
+        border-radius: 0.5rem;
+    }
+
+    .check_todo {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 2rem;
+    }
+
+    .new_todo input {
+        font-size: 1.4rem;
+    }
+
+    .seccion_todo {
+        border-top-left-radius: 0.5rem;
+        max-height: 56vh;
+        border-top-right-radius: 0.5rem;
+    }
+
+    .imgcheck {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 2rem;
+    }
+
+    .previewTxt {
+        font-size: 1.38rem;
+        height: 3rem;
+    }
+
+    .design_ToDO {
+        height: 4rem;
+    }
+
+    .imgNoCheck {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 2rem;
+    }
+
+    .options_todo {
+        border-bottom-left-radius: 0.5rem;
+        font-size: 1.15rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .celphone {
+        display: block;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    footer {
+        font-size: 1.38rem;
+        margin-top: 6rem;
+    }
+
+    #footerCreditos {
+
+        margin-top: 2rem;
+    }
+
+    .Delete_To_Do .sectionDelete {
+        width: 80%;
+        border-radius: 1rem;
+        height: 25%;
+    }
+
+    .Delete_To_Do .sectionDelete span {
+        font-size: 1.38rem;
+    }
+
+    .Delete_To_Do .sectionDelete div button {
+        width: 45%;
+
+        font-size: 1.38rem;
+        border-radius: 0.5rem;
+    }
+
+    .design_ToDO_Delete {
+        animation-name: deleteTodoAnimationMobil;
+    }
+
+    .imgCross {
+        display: block;
+        margin-right: 1rem;
+    }
+
+    .sectionEmpty {
+        font-size: 1.38rem;
+    }
+
+    .new_todo {
+        height: 4rem;
+    }
+
+}
+
+@media (min-width: 850px) {
+    main {
+        height: 80vh;
+        width: 38vw;
+    }
+
+    header h1 {
+        letter-spacing: 0.7vw;
+        font-size: 2.5vw;
+    }
+
+    .SwitchTheme {
+        width: 2.5vw;
+        height: 2.5vw;
+    }
+
+    .new_todo {
+        border-radius: 0.5vw;
+    }
+
+    .check_todo {
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 2vw;
+    }
+
+    .new_todo input {
+        font-size: 1.38vw;
+    }
+
+    .seccion_todo {
+        border-top-left-radius: 0.5vw;
+        max-height: 56%;
+        border-top-right-radius: 0.5vw;
+    }
+
+    .imgcheck {
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 2vw;
+    }
+
+    .previewTxt {
+        font-size: 1.38vw;
+        height: 2vw;
+    }
+
+    .design_ToDO {
+        height: 4vw;
+    }
+
+    .imgNoCheck {
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 2vw;
+    }
+
+    .options_todo {
+        border-bottom-left-radius: 0.5vw;
+        font-size: 1.15vw;
+        border-bottom-right-radius: 0.5vw;
+    }
+
+    .celphone {
+        display: none;
+    }
+
+    .desktop {
+        display: flex;
+    }
+
+    .options_todo {
+        padding: 3% 0;
+        background-color: #25273c;
+    }
+
+    footer {
+        font-size: 1.38vw;
+        margin-top: 0rem;
+
+    }
+
+    #footerCreditos {
+
+        margin-top: 0;
+    }
+
+    .Delete_To_Do .sectionDelete {
+        width: 30%;
+        border-radius: 1vw;
+        height: 25%;
+    }
+
+    .Delete_To_Do .sectionDelete span {
+        font-size: 1.38vw;
+    }
+
+    .Delete_To_Do .sectionDelete div button {
+        width: 25%;
+
+        font-size: 1.38vw;
+        border-radius: 0.5vw;
+    }
+
+    .design_ToDO_Delete {
+        animation-name: deleteTodoAnimationDesktop;
+    }
+
+    .imgCross {
+        display: none;
+        margin-right: 0rem;
+    }
+
+    .sectionEmpty {
+        font-size: 1.38vw;
+    }
+
+    .new_todo {
+        height: 10%;
+    }
 }
