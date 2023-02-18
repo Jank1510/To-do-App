@@ -339,6 +339,7 @@ let switchTheme = () => {
             finish[i].style.color = 'hsl(235, 19%, 35%)';
         }
         document.getElementById('optioTOdo').style.backgroundColor = '#25273c'
+        document.getElementById('optioTOdo2').style.backgroundColor = '#25273c'
         const colorjs = document.querySelectorAll('.colorjs');
         for (let i = 0; i < colorjs.length; i++) {
             colorjs[i].style.color = 'hsl(235, 19%, 35%)';
@@ -386,6 +387,7 @@ let switchTheme = () => {
                 finish[i].style.color = 'hsl(233, 11%, 84%)';
             }
             document.getElementById('optioTOdo').style.backgroundColor = '#ffffff'
+            document.getElementById('optioTOdo2').style.backgroundColor = '#ffffff'
             const colorjs = document.querySelectorAll('.colorjs');
             for (let i = 0; i < colorjs.length; i++) {
                 colorjs[i].style.color = 'hsl(236, 9%, 61%)';
